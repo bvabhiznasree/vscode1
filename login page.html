@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+
+    <style>
+        body {
+            background-color: rgb(241, 191, 231);
+            font-family: Arial, sans-serif;
+        }
+
+        .form-box {
+            background-color: white;
+            width: 400px;
+            margin: 50px auto;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: rgb(252, 182, 237);
+        }
+
+        label {
+            color: rgb(246, 170, 229);
+            font-weight: bold;
+        }
+
+        input {
+            padding: 8px;
+            border: 1px solid rgb(236, 153, 208);
+            border-radius: 5px;
+        }
+
+        .button {
+            background-color: rgb(229, 155, 212);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-box">
+
+        <h2>Registration Form</h2>
+
+        <form>
+            <table cellpadding="8">
+
+                <tr>
+                    <td align="right">
+                        <label>First Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="firstname">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right">
+                        <label>Last Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="lastname">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right">
+                        <label>Email:</label>
+                    </td>
+                    <td>
+                        <input type="email" name="email">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right">
+                        <label>Password:</label>
+                    </td>
+                    <td>
+                        <input type="password" name="password">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right">
+                        <label>Phone Number:</label>
+                    </td>
+                    <td>
+                        <input type="tel" name="phone">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Register" class="button">
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+
+    </div>
+
+</body>
+</html>
