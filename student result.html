@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Result Management System</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            width: 400px;
+            margin: 20px auto;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            background-color: green;
+            color: white;
+            border: none;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        th {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Student Result Management System</h1>
+
+    <form id="resultForm">
+
+        Name:
+        <input type="text" id="name" required><br>
+
+        Roll No:
+        <input type="text" id="roll" required><br>
+
+        HTML:
+        <input type="number" id="html" min="0" max="100" required><br>
+
+        CSS:
+        <input type="number" id="css" min="0" max="100" required><br>
+
+        JavaScript:
+        <input type="number" id="js" min="0" max="100" required><br>
+
+        <button type="submit">Calculate Result</button>
+        <button type="reset">Clear</button>
+
+    </form>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Roll No</th>
+            <th>Total</th>
+            <th>Percentage</th>
+            <th>Grade</th>
+            <th>Status</th>
+        </tr>
+
+        <tbody id="result"></tbody>
+    </table>
+
+
+    <script>
+
+        document.getElementById("resultForm")
+        .addEventListener("submit", function(e) {
+
+            e.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let roll = document.getElementById("roll").value;
+
+            let html = Number(document.getElementById("html").value);
+            let css = Number(document.getElementById("css").value);
+            let js = Number(document.getElementById("js").value);
+
+            let total = html + css + js;
+            let percentage = total / 3;
+
+            let grade;
+
+            if (percentage >= 90)
+                grade = "A+";
+            else if (percentage >= 80)
+                grade = "A";
+            else if (percentage >= 70)
+                grade = "B";
+            else if (percentage >= 60)
+                grade = "C";
+            else if (percentage >= 50)
+                grade = "D";
+            else
+                grade = "F";
+
+            let status;
+
+            if (html >= 35 && css >= 35 && js >= 35)
+                status = "Pass";
+            else
+                status = "Fail";
+
+            document.getElementById("result").innerHTML += `
+                <tr>
+                    <td>${name}</td>
+                    <td>${roll}</td>
+                    <td>${total}</td>
+                    <td>${percentage.toFixed(2)}%</td>
+                    <td>${grade}</td>
+                    <td>${status}</td>
+                </tr>
+            `;
+
+            document.getElementById("resultForm").reset();
+
+        });
+
+    </script>
+
+</body>
+</html>
