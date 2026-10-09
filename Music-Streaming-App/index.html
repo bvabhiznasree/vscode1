@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MelodyHub - Music Streaming App</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="authView" class="auth-view">
+  <div class="auth-card">
+    <div class="brand large">♪ MelodyHub</div><p class="tagline">Your music. Your mood. Your moments.</p>
+    <div class="auth-tabs"><button id="loginTab" class="tab active" onclick="switchAuth('login')">Login</button><button id="signupTab" class="tab" onclick="switchAuth('signup')">Sign Up</button></div>
+    <form id="loginForm" onsubmit="login(event)">
+      <h2>Welcome back</h2><label>Email</label><input id="loginEmail" type="email" required placeholder="you@example.com">
+      <label>Password</label><input id="loginPassword" type="password" required placeholder="Password">
+      <button class="primary full">Login</button><p id="loginMsg" class="message"></p>
+      <p class="demo">Admin: admin@melodyhub.com / admin123</p>
+    </form>
+    <form id="signupForm" class="hidden" onsubmit="signup(event)">
+      <h2>Create your account</h2><label>Name</label><input id="signupName" required placeholder="Your name">
+      <label>Email</label><input id="signupEmail" type="email" required placeholder="you@example.com">
+      <label>Password</label><input id="signupPassword" type="password" minlength="4" required placeholder="At least 4 characters">
+      <button class="primary full">Create Account</button><p id="signupMsg" class="message"></p>
+    </form>
+  </div>
+</main>
+
+<div id="appView" class="app hidden">
+<aside class="sidebar">
+  <div class="brand">♪ MelodyHub</div><p class="small-label">MENU</p>
+  <button class="nav-btn active" data-section="home" onclick="showSection('home')">⌂ Home</button>
+  <button class="nav-btn" data-section="discover" onclick="showSection('discover')">◉ Discover</button>
+  <button class="nav-btn" data-section="favorites" onclick="showSection('favorites')">♡ Favorites</button>
+  <button class="nav-btn" data-section="playlists" onclick="showSection('playlists')">☷ Playlists</button>
+  <div id="adminNav" class="hidden"><p class="small-label">ADMIN</p><button class="nav-btn" data-section="admin" onclick="showSection('admin')">⚙ Admin Dashboard</button></div>
+  <div class="sidebar-bottom"><div id="sideUser" class="user-mini"></div><button class="logout-btn" onclick="logout()">Log out</button></div>
+</aside>
+
+<section class="main">
+<header class="topbar"><div><p class="eyebrow">MUSIC STREAMING APP</p><h1 id="pageTitle">Good morning</h1></div>
+<div class="top-actions"><input id="searchInput" class="search" type="search" placeholder="Search songs, artists..." oninput="renderSongs()"><div class="avatar" id="avatar">M</div></div></header>
+<div class="content">
+<section id="home" class="section">
+  <div class="hero"><div><span class="pill">Featured playlist</span><h2>Find your sound.</h2><p>Explore fresh tracks, save favorites and enjoy your personal music space.</p><button class="primary" onclick="showSection('discover')">Explore Music →</button></div><div class="hero-art">♫</div></div>
+  <div class="section-head"><div><p class="eyebrow">FOR YOU</p><h2>Popular right now</h2></div><button class="text-btn" onclick="showSection('discover')">View all</button></div>
+  <div id="homeSongs" class="song-grid"></div>
+</section>
+
+<section id="discover" class="section hidden"><div class="section-head"><div><p class="eyebrow">LIBRARY</p><h2>Discover music</h2></div></div><div id="genreRow" class="genre-row"></div><div id="songGrid" class="song-grid"></div></section>
+<section id="favorites" class="section hidden"><div class="section-head"><div><p class="eyebrow">YOUR COLLECTION</p><h2>Favorites</h2></div></div><div id="favoriteGrid" class="song-grid"></div></section>
+<section id="playlists" class="section hidden"><div class="section-head"><div><p class="eyebrow">YOUR MUSIC</p><h2>Playlists</h2></div><button class="primary small" onclick="createPlaylist()">+ New Playlist</button></div><div id="playlistList" class="playlist-list"></div></section>
+
+<section id="admin" class="section hidden"><div class="section-head"><div><p class="eyebrow">ADMIN MODULE</p><h2>Dashboard</h2></div></div>
+<div class="stats"><div class="stat-card"><span>Users</span><strong id="statUsers">0</strong></div><div class="stat-card"><span>Songs</span><strong id="statSongs">0</strong></div><div class="stat-card"><span>Favorites</span><strong id="statFavs">0</strong></div></div>
+<div class="admin-panel"><h3>Manage Music</h3><form class="add-song-form" onsubmit="addSong(event)">
+<input id="newTitle" placeholder="Song title" required><input id="newArtist" placeholder="Artist" required><input id="newGenre" placeholder="Genre" required><input id="newDuration" placeholder="3:40" required><button class="primary">Add Song</button></form><div id="adminSongList"></div></div>
+<div class="admin-panel"><h3>Registered Users</h3><div id="adminUsers"></div></div>
+</section>
+</div>
+
+<footer class="player"><div class="now-playing"><div id="playerCover" class="mini-cover">♪</div><div><strong id="playerTitle">Select a song</strong><span id="playerArtist">MelodyHub</span></div></div>
+<div class="controls"><button onclick="previousSong()">⏮</button><button id="playBtn" class="play-btn" onclick="togglePlay()">▶</button><button onclick="nextSong()">⏭</button></div>
+<div class="progress-wrap"><span id="currentTime">0:00</span><input id="progress" type="range" min="0" max="100" value="0" oninput="seekSong(this.value)"><span id="duration">0:00</span></div></footer>
+</section></div>
+<audio id="audio" preload="metadata"></audio><script src="script.js"></script>
+</body></html>
